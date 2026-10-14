@@ -24,6 +24,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
+#include "com_debug.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -89,14 +90,14 @@ int main(void)
   MX_GPIO_Init();
   MX_USART1_UART_Init();
   /* USER CODE BEGIN 2 */
-  printf("%s\r\n", "Hello world!");
+  DEBUG_PRINTF("%s\r\n", "Hello world!");
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    printf("%s\r\n", "run");
+    DEBUG_PRINTF("%s\r\n", "run");
     HAL_Delay(1000);
     /* USER CODE END WHILE */
 
@@ -145,11 +146,7 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
-int fputc(int ch, FILE *f)
-{
-  HAL_UART_Transmit(&huart1, (uint8_t *)&ch, 1, HAL_MAX_DELAY);
-  return ch;
-}
+
 /* USER CODE END 4 */
 
 /**

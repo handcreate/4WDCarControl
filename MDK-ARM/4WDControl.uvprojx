@@ -339,7 +339,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103xB</Define>
               <Undefine></Undefine>
-              <IncludePath>../Core/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include</IncludePath>
+              <IncludePath>../Core/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include;.\Common;.\Application;.\Peripheral</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -496,6 +496,27 @@
           </Files>
         </Group>
         <Group>
+          <GroupName>Application</GroupName>
+        </Group>
+        <Group>
+          <GroupName>Peripheral</GroupName>
+        </Group>
+        <Group>
+          <GroupName>Common</GroupName>
+          <Files>
+            <File>
+              <FileName>com_debug.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\Common\com_debug.c</FilePath>
+            </File>
+            <File>
+              <FileName>com_debug.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>.\Common\com_debug.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
           <GroupName>::CMSIS</GroupName>
         </Group>
       </Groups>
@@ -514,5 +535,14 @@
     </components>
     <files/>
   </RTE>
+
+  <LayerInfo>
+    <Layers>
+      <Layer>
+        <LayName>4WDControl</LayName>
+        <LayPrjMark>1</LayPrjMark>
+      </Layer>
+    </Layers>
+  </LayerInfo>
 
 </Project>
