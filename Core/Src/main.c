@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "spi.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -25,6 +26,8 @@
 /* USER CODE BEGIN Includes */
 #include <stdio.h>
 #include "com_debug.h"
+#include "per_SI24R1.h"
+#include "app_data_receive.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -89,16 +92,23 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_USART1_UART_Init();
+  MX_SPI1_Init();
   /* USER CODE BEGIN 2 */
   DEBUG_PRINTF("%s\r\n", "Hello world!");
+  per_SI24R1_Init(); // 初始化 SI24R1
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    DEBUG_PRINTF("%s\r\n", "run");
-    HAL_Delay(1000);
+    // 开始接收数据
+    uint8_t res = app_receive_data();
+    // 根据接收到的数据，处理连接状态
+    app_process_connect_state(res);
+    // 根据接收到的数据，处理飞行状态
+    app_process_flight_state();
+    HAL_Delay(6);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
