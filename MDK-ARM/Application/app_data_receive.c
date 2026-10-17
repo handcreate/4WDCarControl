@@ -8,7 +8,14 @@ RemoteState remote_state = DISCONNECTED;
 // 飞行状态
 FlightState flight_state = IDLE;
 // 遥控数据
-RemoteData remote_data = {0}; 
+RemoteData remote_data = {
+    .thr = 500,
+    .yaw = 500,
+    .pit = 500,
+    .rol = 500,
+    .shutdown = 0,
+    .fix_height = 0
+}; 
 
 uint8_t comm_buffer[TX_PLOAD_WIDTH] = {0};
 // 失联次数
@@ -60,9 +67,9 @@ uint8_t app_receive_data(void)
     remote_data.shutdown = comm_buffer[11];
     remote_data.fix_height = comm_buffer[12];
 
-    printf("remote:%d,%d,%d,%d,%d,%d\n", 
-        remote_data.thr, remote_data.yaw, remote_data.pit, 
-        remote_data.rol, remote_data.shutdown, remote_data.fix_height);
+    // printf("remote:%d,%d,%d,%d,%d,%d\n", 
+    //     remote_data.thr, remote_data.yaw, remote_data.pit, 
+    //     remote_data.rol, remote_data.shutdown, remote_data.fix_height);
     
     return 0;
 }

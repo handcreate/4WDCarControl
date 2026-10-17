@@ -96,9 +96,9 @@ void driver_task(void *args)
     while (1)
     {
         // 按顺序测试电机
-        app_drive_test_seq();
+        // app_drive_test_seq();
 
-        // app_drive_run();
+        app_drive_run();
 
         vTaskDelayUntil(&xLastWakeTime, DRIVER_TASK_PERIOD);
     }
