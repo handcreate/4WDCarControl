@@ -28,7 +28,7 @@
 #include <stdio.h>
 #include "com_debug.h"
 #include "per_SI24R1.h"
-#include "app_data_receive.h"
+#include "app_freertos_task.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -98,19 +98,17 @@ int main(void)
   /* USER CODE BEGIN 2 */
   DEBUG_PRINTF("%s\r\n", "Hello world!");
   per_SI24R1_Init(); // 初始化 SI24R1
+
+  // 启动FreeRTOS，
+  app_freertos_start();
+  // 启用FreeRTOS后，后面的代码不再执行
+
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-    // 开始接收数据
-    uint8_t res = app_receive_data();
-    // 根据接收到的数据，处理连接状态
-    app_process_connect_state(res);
-    // 根据接收到的数据，处理飞行状态
-    app_process_flight_state();
-    HAL_Delay(6);
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
